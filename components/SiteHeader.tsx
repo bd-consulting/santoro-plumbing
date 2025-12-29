@@ -19,10 +19,10 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b bg-white/80 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b bg-white/85 backdrop-blur">
       <div className="container py-3 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3">
-          <div className="h-10 w-10 rounded-2xl bg-slate-900 text-white grid place-items-center font-semibold">
+          <div className="h-10 w-10 rounded-2xl bg-brand-navy text-white grid place-items-center font-semibold shadow-soft">
             S
           </div>
           <div className="leading-tight">
@@ -33,7 +33,7 @@ export function SiteHeader() {
 
         <nav className="hidden md:flex items-center gap-6 text-sm">
           {nav.map((n) => (
-            <Link key={n.href} href={n.href} className="text-slate-700 hover:text-slate-900">
+            <Link key={n.href} href={n.href} className="text-slate-700 hover:text-brand-navy">
               {n.label}
             </Link>
           ))}

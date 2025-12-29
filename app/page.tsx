@@ -6,8 +6,8 @@ const PHONE_TEL = "tel:+12037583066";
 
 const trust = [
   { title: "Fast scheduling", desc: "Quick response and clear next steps.", icon: IconClock },
-  { title: "Quality workmanship", desc: "Clean installs and reliable repairs.", icon: IconWrench },
-  { title: "Straightforward pricing", desc: "No surprises—just clarity.", icon: IconShield }
+  { title: "Clean workmanship", desc: "We respect your home and finish strong.", icon: IconWrench },
+  { title: "Straightforward pricing", desc: "Clear scope before work begins.", icon: IconShield }
 ];
 
 const services = [
@@ -41,19 +41,19 @@ const faqs = [
   },
   {
     q: "Do you provide estimates?",
-    a: "Yes. We’ll confirm the scope and provide clear expectations before work begins."
+    a: "Yes. We confirm scope and expectations before work begins."
   },
   {
     q: "What areas do you serve?",
-    a: "Based in Prospect, CT. We serve surrounding towns—see the Service Areas page for examples."
+    a: "Based in Prospect, CT. We serve surrounding towns—coverage depends on job type and schedule."
   }
 ];
 
 function Glow() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div className="absolute -top-24 left-1/2 h-72 w-[52rem] -translate-x-1/2 rounded-full bg-gradient-to-r from-slate-200 via-white to-slate-200 blur-3xl opacity-70" />
-      <div className="absolute -bottom-28 right-[-10rem] h-80 w-80 rounded-full bg-slate-100 blur-3xl opacity-80" />
+      <div className="absolute -top-28 left-1/2 h-80 w-[60rem] -translate-x-1/2 rounded-full bg-gradient-to-r from-brand-navy/10 via-white to-brand-navy/10 blur-3xl opacity-90" />
+      <div className="absolute -bottom-32 right-[-12rem] h-96 w-96 rounded-full bg-brand-navy/10 blur-3xl opacity-70" />
     </div>
   );
 }
@@ -62,17 +62,23 @@ export default function HomePage() {
   return (
     <>
       {/* HERO */}
-      <section className="relative border-b bg-gradient-to-b from-slate-50 to-white">
+      <section className="relative border-b bg-gradient-to-b from-brand-mist to-white">
         <Glow />
         <div className="container relative py-14 md:py-20">
           <div className="grid gap-10 md:grid-cols-2 md:items-center">
             <div>
-              <div className="eyebrow">Prospect, CT • Plumbing &amp; Well Service</div>
-              <h1 className="mt-3 text-4xl md:text-5xl font-semibold tracking-tight">
-                A modern, reliable plumbing team you can actually reach.
+              <div className="badge">
+                <span className="h-2 w-2 rounded-full bg-brand-navy" />
+                Prospect, CT • Plumbing &amp; Well Service
+              </div>
+
+              <h1 className="mt-4 text-4xl md:text-5xl font-semibold tracking-tight text-brand-navy">
+                Reliable plumbing service without the runaround.
               </h1>
+
               <p className="mt-4 text-base md:text-lg text-slate-700">
-                Clean workmanship, clear communication, and fast scheduling—without the runaround.
+                Clean workmanship, clear communication, and fast scheduling. We handle plumbing repairs,
+                water heaters, and well systems across Prospect and nearby towns.
               </p>
 
               <div className="mt-7 flex flex-wrap gap-3">
@@ -80,16 +86,14 @@ export default function HomePage() {
                   Request Service
                 </Link>
                 <Link href={PHONE_TEL} className="btn btn-secondary flex gap-2">
-                  <IconPhone className="h-4 w-4" />
+                  <IconPhone className="h-4 w-4 text-brand-navy" />
                   Call {PHONE_TEXT}
                 </Link>
               </div>
 
               <div className="mt-7 flex items-center gap-2 text-sm text-slate-600">
-                <IconStar className="h-4 w-4" />
-                <span>
-                  Trusted locally for quality repairs &amp; honest recommendations.
-                </span>
+                <IconStar className="h-4 w-4 text-brand-navy" />
+                <span>Trusted locally for quality repairs &amp; honest recommendations.</span>
               </div>
             </div>
 
@@ -99,20 +103,20 @@ export default function HomePage() {
               <div className="mt-3 grid gap-3">
                 {services.map((s) => (
                   <div key={s.title} className="flex gap-3 rounded-2xl border border-slate-200 p-4">
-                    <div className="h-10 w-10 rounded-xl bg-slate-900 text-white grid place-items-center">
+                    <div className="h-10 w-10 rounded-xl bg-brand-navy text-white grid place-items-center shadow-soft">
                       <s.icon className="h-5 w-5" />
                     </div>
                     <div>
-                      <div className="font-semibold">{s.title}</div>
+                      <div className="font-semibold text-brand-navy">{s.title}</div>
                       <div className="text-sm text-slate-600">{s.desc}</div>
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-6 rounded-2xl bg-slate-50 p-4 text-sm text-slate-700">
-                <span className="font-semibold">Pro tip:</span> If you can, text or note the brand/model
-                of your well pump or water heater—helps us diagnose faster.
+              <div className="mt-6 rounded-2xl bg-brand-mist p-4 text-sm text-slate-700">
+                <span className="font-semibold text-brand-navy">Helpful tip:</span> If you can, note the
+                brand/model of your well pump or water heater—it helps us diagnose faster.
               </div>
             </div>
           </div>
@@ -125,10 +129,10 @@ export default function HomePage() {
           {trust.map((t) => (
             <div key={t.title} className="card p-6">
               <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-xl bg-slate-100 grid place-items-center">
-                  <t.icon className="h-5 w-5 text-slate-900" />
+                <div className="h-10 w-10 rounded-xl bg-brand-navy/10 grid place-items-center">
+                  <t.icon className="h-5 w-5 text-brand-navy" />
                 </div>
-                <div className="font-semibold">{t.title}</div>
+                <div className="font-semibold text-brand-navy">{t.title}</div>
               </div>
               <p className="mt-3 text-sm text-slate-600">{t.desc}</p>
             </div>
@@ -138,24 +142,27 @@ export default function HomePage() {
 
       {/* MID CTA */}
       <section className="container pb-12">
-        <div className="rounded-3xl border border-slate-200 bg-gradient-to-r from-slate-900 to-slate-700 text-white p-8 md:p-10">
+        <div className="rounded-3xl border border-slate-200 bg-gradient-to-r from-brand-navy to-brand-navy/90 text-white p-8 md:p-10 shadow-soft">
           <div className="grid gap-6 md:grid-cols-2 md:items-center">
             <div>
-              <div className="text-xs font-semibold uppercase tracking-wider text-white/70">
+              <div className="text-xs font-semibold uppercase tracking-wider text-white/75">
                 Need service this week?
               </div>
               <div className="mt-2 text-2xl md:text-3xl font-semibold tracking-tight">
                 Call now for the quickest scheduling.
               </div>
-              <div className="mt-2 text-white/80">
+              <div className="mt-2 text-white/85">
                 We’ll confirm the issue, explain the plan, and get you on the calendar.
               </div>
             </div>
             <div className="flex flex-wrap gap-3 md:justify-end">
-              <Link href={PHONE_TEL} className="btn bg-white text-slate-900 hover:bg-slate-100">
+              <Link href={PHONE_TEL} className="btn bg-white text-brand-navy hover:bg-brand-mist">
                 Call {PHONE_TEXT}
               </Link>
-              <Link href="/contact" className="btn btn-secondary border-white/20 text-white hover:bg-white/10">
+              <Link
+                href="/contact"
+                className="btn border border-white/25 text-white hover:bg-white/10"
+              >
                 Request Service
               </Link>
             </div>
@@ -168,7 +175,9 @@ export default function HomePage() {
         <div className="flex items-end justify-between gap-6">
           <div>
             <div className="eyebrow">Reviews</div>
-            <h2 className="mt-2 text-3xl font-semibold tracking-tight">People call us back for a reason.</h2>
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-brand-navy">
+              People call us back for a reason.
+            </h2>
           </div>
           <Link href="/reviews" className="hidden md:inline-flex btn btn-secondary">
             View Reviews
@@ -178,7 +187,7 @@ export default function HomePage() {
         <div className="mt-8 grid gap-4 md:grid-cols-3">
           {testimonials.map((r) => (
             <div key={r.name} className="card p-6">
-              <div className="flex items-center gap-2 text-slate-700">
+              <div className="flex items-center gap-1 text-brand-navy">
                 <IconStar className="h-4 w-4" />
                 <IconStar className="h-4 w-4" />
                 <IconStar className="h-4 w-4" />
@@ -186,7 +195,7 @@ export default function HomePage() {
                 <IconStar className="h-4 w-4" />
               </div>
               <p className="mt-4 text-sm text-slate-700">“{r.quote}”</p>
-              <div className="mt-4 text-sm font-semibold">{r.name}</div>
+              <div className="mt-4 text-sm font-semibold text-brand-navy">{r.name}</div>
             </div>
           ))}
         </div>
@@ -202,11 +211,12 @@ export default function HomePage() {
       <section className="container py-12">
         <div className="card p-6 md:p-10">
           <div className="eyebrow">FAQ</div>
-          <h2 className="mt-2 text-3xl font-semibold tracking-tight">Quick answers</h2>
+          <h2 className="mt-2 text-3xl font-semibold tracking-tight text-brand-navy">Quick answers</h2>
+
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {faqs.map((f) => (
               <div key={f.q} className="rounded-2xl border border-slate-200 p-5">
-                <div className="font-semibold">{f.q}</div>
+                <div className="font-semibold text-brand-navy">{f.q}</div>
                 <div className="mt-2 text-sm text-slate-600">{f.a}</div>
               </div>
             ))}
@@ -225,10 +235,7 @@ export default function HomePage() {
 
       {/* MOBILE STICKY CALL */}
       <div className="md:hidden fixed bottom-3 left-3 right-3 z-50">
-        <Link
-          href={PHONE_TEL}
-          className="btn btn-primary w-full py-3 text-base shadow-lg flex gap-2"
-        >
+        <Link href={PHONE_TEL} className="btn btn-primary w-full py-3 text-base shadow-soft flex gap-2">
           <IconPhone className="h-5 w-5" />
           Call {PHONE_TEXT}
         </Link>
