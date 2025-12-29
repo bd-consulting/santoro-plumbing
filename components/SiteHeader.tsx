@@ -18,22 +18,30 @@ const nav = [
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [logoFailed, setLogoFailed] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 border-b bg-white/85 backdrop-blur">
       <div className="container py-3 flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-3">
-          <div className="relative h-10 w-auto">
+        {/* Logo only */}
+        <Link href="/" className="flex items-center">
+          {!logoFailed ? (
             <Image
-              src="/spws_logo.png"
-              alt="Santoro Plumbing & Well Services logo"
-              height={40}
-              width={160}
+              src="/SPWS_LOGO.png"
+              alt="Santoro Plumbing & Well Services"
+              width={220}
+              height={48}
               priority
-              className="h-10 w-auto object-contain"
+              sizes="(max-width: 768px) 140px, 180px"
+              className="h-9 md:h-10 w-auto object-contain"
+              onError={() => setLogoFailed(true)}
             />
-          </div>
+          ) : (
+            // Fallback if logo fails to load
+            <div className="h-10 w-10 rounded-2xl bg-brand-navy text-white grid place-items-center font-semibold shadow-soft">
+              S
+            </div>
+          )}
         </Link>
 
         {/* Desktop Nav */}
@@ -82,13 +90,3 @@ export function SiteHeader() {
               href={PHONE_TEL}
               onClick={() => setOpen(false)}
               className="btn btn-primary gap-2"
-            >
-              <IconPhone className="h-4 w-4" />
-              Call {PHONE_TEXT}
-            </Link>
-          </div>
-        </div>
-      )}
-    </header>
-  );
-}
