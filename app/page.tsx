@@ -182,6 +182,7 @@ export default function HomePage() {
                   alt="Plumbing service in action"
                   fill
                   priority
+                  unoptimized // CHANGE: bypass Next image optimization to avoid optimizer/file-format issues
                   sizes="(max-width: 1024px) 100vw, 520px"
                   className="object-cover"
                 />
