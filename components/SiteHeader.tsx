@@ -23,21 +23,21 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b bg-white/85 backdrop-blur">
       <div className="container py-3 flex items-center justify-between">
-        {/* Logo only */}
+        {/* Logo-only brand */}
         <Link href="/" className="flex items-center">
           {!logoFailed ? (
-            <Image
-              src="/SPWS_LOGO.png"
-              alt="Santoro Plumbing & Well Services"
-              width={220}
-              height={48}
-              priority
-              sizes="(max-width: 768px) 140px, 180px"
-              className="h-9 md:h-10 w-auto object-contain"
-              onError={() => setLogoFailed(true)}
-            />
+            <div className="relative h-10 w-[180px] sm:w-[200px] md:w-[220px]">
+              <Image
+                src="/SPWS_LOGO.png"  {/* MATCHES EXACT FILENAME */}
+                alt="Santoro Plumbing & Well Services"
+                fill
+                priority
+                sizes="(max-width: 640px) 180px, (max-width: 768px) 200px, 220px"
+                className="object-contain"
+                onError={() => setLogoFailed(true)}
+              />
+            </div>
           ) : (
-            // Fallback if logo fails to load
             <div className="h-10 w-10 rounded-2xl bg-brand-navy text-white grid place-items-center font-semibold shadow-soft">
               S
             </div>
@@ -63,6 +63,7 @@ export function SiteHeader() {
 
         {/* Mobile Toggle */}
         <button
+          type="button"
           className="md:hidden btn btn-secondary"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
@@ -90,3 +91,13 @@ export function SiteHeader() {
               href={PHONE_TEL}
               onClick={() => setOpen(false)}
               className="btn btn-primary gap-2"
+            >
+              <IconPhone className="h-4 w-4" />
+              Call {PHONE_TEXT}
+            </Link>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+}
