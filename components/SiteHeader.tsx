@@ -29,7 +29,7 @@ export function SiteHeader() {
             <div className="relative h-10 w-[180px] sm:w-[200px] md:w-[220px]">
               {/* NOTE: Path is case-sensitive on Vercel/Linux. File is /public/SPWS_LOGO.png */}
               <Image
-                src="/SPWS_LOGO.png"
+                src="/SPWS_S_LOGO.png"
                 alt="Santoro Plumbing & Well Services"
                 fill
                 priority
