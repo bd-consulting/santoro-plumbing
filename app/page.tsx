@@ -12,8 +12,6 @@ import {
 const PHONE_TEXT = "(203) 758-3066";
 const PHONE_TEL = "tel:+12037583066";
 
-const PRIMARY_CTA = { href: "/contact", label: "Request Service" };
-
 const trustPills = [
   { icon: IconStar, label: "5-star local reputation" },
   { icon: IconShield, label: "Licensed & insured" },
@@ -116,34 +114,11 @@ function SectionHeader(props: { eyebrow: string; title: string; subtitle?: strin
   );
 }
 
-function SoftPattern() {
-  return (
-    <svg
-      aria-hidden="true"
-      className="absolute inset-0 h-full w-full opacity-[0.35]"
-      viewBox="0 0 1200 600"
-      preserveAspectRatio="none"
-    >
-      <defs>
-        <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#0B1F3B" stopOpacity="0.10" />
-          <stop offset="1" stopColor="#0B1F3B" stopOpacity="0.02" />
-        </linearGradient>
-        <pattern id="p" width="44" height="44" patternUnits="userSpaceOnUse">
-          <path d="M44 0H0V44" fill="none" stroke="#0B1F3B" strokeOpacity="0.12" />
-        </pattern>
-      </defs>
-      <rect width="1200" height="600" fill="url(#g)" />
-      <rect width="1200" height="600" fill="url(#p)" />
-    </svg>
-  );
-}
-
 function PrimaryButtons() {
   return (
     <div className="flex flex-wrap gap-3">
-      <Link href={PRIMARY_CTA.href} className="btn btn-primary">
-        {PRIMARY_CTA.label}
+      <Link href="/contact" className="btn btn-primary">
+        Request Service
       </Link>
       <Link href={PHONE_TEL} className="btn btn-secondary flex gap-2">
         <IconPhone className="h-4 w-4 text-brand-navy" />
@@ -160,7 +135,7 @@ export default function HomePage() {
       <section className="border-b bg-gradient-to-b from-brand-mist to-white">
         <div className="container py-12 md:py-16">
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-            {/* Left: Copy */}
+            {/* Left */}
             <div className="flex flex-col gap-6">
               <div className="flex flex-wrap gap-2">
                 {trustPills.map((t) => (
@@ -198,145 +173,52 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right: Premium panel */}
+            {/* Right: BIG hero image */}
             <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-soft">
-              <div className="absolute inset-0">
-                <SoftPattern />
+              {/* CHANGE: make the image dominant and obvious */}
+              <div className="relative h-[360px] md:h-[420px]">
+                <Image
+                  src="/hero-plumber.jpg"
+                  alt="Plumbing service in action"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 520px"
+                  className="object-cover"
+                />
+                {/* CHANGE: premium overlay for readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/55 via-brand-navy/10 to-transparent" />
+                <div className="absolute bottom-5 left-5 right-5">
+                  <div className="inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-brand-navy border border-slate-200">
+                    <span className="h-2 w-2 rounded-full bg-brand-navy" />
+                    Fast scheduling • Clean workmanship • Clear communication
+                  </div>
+                  <div className="mt-3 flex flex-wrap gap-3">
+                    <Link href="/contact" className="btn bg-white text-brand-navy hover:bg-brand-mist">
+                      Request Service
+                    </Link>
+                    <Link
+                      href={PHONE_TEL}
+                      className="btn border border-white/30 text-white hover:bg-white/10"
+                    >
+                      Call {PHONE_TEXT}
+                    </Link>
+                  </div>
+                </div>
               </div>
 
-              <div className="relative p-6 md:p-8">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <div className="eyebrow">Fast scheduling</div>
-                    <div className="text-2xl font-semibold tracking-tight text-brand-navy mt-1">
-                      Get service without the back-and-forth
-                    </div>
-                    <div className="text-slate-700 mt-2">
-                      Call now, or request service in under a minute.
-                    </div>
-                  </div>
-                  <div className="hidden md:block rounded-2xl bg-white/80 border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-700">
-                    Response-focused
-                  </div>
+              {/* Quick highlights */}
+              <div className="p-6 grid gap-3 md:grid-cols-3">
+                <div className="rounded-2xl border border-slate-200 p-4">
+                  <div className="text-sm font-semibold text-brand-navy">Root-cause fixes</div>
+                  <div className="text-sm text-slate-600 mt-1">Stop repeat problems.</div>
                 </div>
-
-                {/* Optional hero image */}
-                <div className="mt-6 grid gap-4 md:grid-cols-2">
-                  <div className="rounded-2xl border border-slate-200 bg-white p-4">
-                    <div className="text-sm font-semibold text-brand-navy">Quick request</div>
-                    <div className="text-sm text-slate-600 mt-1">
-                      Tell us what you need. We’ll follow up to confirm details.
-                    </div>
-
-                    <form className="mt-4 grid gap-3">
-                      <input
-                        className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-steel/40"
-                        placeholder="Name"
-                        name="name"
-                        autoComplete="name"
-                      />
-                      <input
-                        className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-steel/40"
-                        placeholder="Phone"
-                        name="phone"
-                        autoComplete="tel"
-                      />
-                      <select
-                        className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-steel/40"
-                        name="service"
-                        defaultValue="Plumbing Repair"
-                      >
-                        <option>Plumbing Repair</option>
-                        <option>Water Heater</option>
-                        <option>Well System</option>
-                        <option>Drain / Sewer</option>
-                        <option>Other</option>
-                      </select>
-
-                      <Link href="/contact" className="btn btn-primary w-full">
-                        Submit Request
-                      </Link>
-
-                      <div className="text-xs text-slate-600">
-                        Prefer phone?{" "}
-                        <Link className="underline decoration-slate-300 hover:decoration-brand-navy" href={PHONE_TEL}>
-                          Call {PHONE_TEXT}
-                        </Link>
-                      </div>
-                    </form>
-                  </div>
-
-                  <div className="relative rounded-2xl border border-slate-200 bg-white overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-brand-navy/10 to-transparent" />
-                    <div className="relative p-4">
-                      <div className="text-sm font-semibold text-brand-navy">What we’re known for</div>
-                      <div className="mt-3 grid gap-3">
-                        <div className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white p-3">
-                          <div className="h-9 w-9 rounded-xl bg-brand-navy text-white grid place-items-center">
-                            <IconWrench className="h-5 w-5" />
-                          </div>
-                          <div>
-                            <div className="text-sm font-semibold text-brand-navy">Root-cause repairs</div>
-                            <div className="text-sm text-slate-600">
-                              Fix it properly so it stays fixed.
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white p-3">
-                          <div className="h-9 w-9 rounded-xl bg-brand-navy text-white grid place-items-center">
-                            <IconShield className="h-5 w-5" />
-                          </div>
-                          <div>
-                            <div className="text-sm font-semibold text-brand-navy">Transparent approach</div>
-                            <div className="text-sm text-slate-600">
-                              Options + explanation, no pressure.
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white p-3">
-                          <div className="h-9 w-9 rounded-xl bg-brand-navy text-white grid place-items-center">
-                            <IconClock className="h-5 w-5" />
-                          </div>
-                          <div>
-                            <div className="text-sm font-semibold text-brand-navy">Responsive scheduling</div>
-                            <div className="text-sm text-slate-600">
-                              Get a time window and real updates.
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* If you add /public/hero-plumber.jpg, it will show. Otherwise it stays as a premium panel. */}
-                      <div className="mt-4 rounded-2xl overflow-hidden border border-slate-200 bg-white">
-                        <div className="relative h-40">
-                          <Image
-                            src="/hero-plumber.jpg"
-                            alt="Plumbing service in action"
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 1024px) 100vw, 480px"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="mt-3 text-xs text-slate-600">
-                        Don’t have an image yet? Add one at <span className="font-semibold">/public/hero-plumber.jpg</span>.
-                      </div>
-                    </div>
-                  </div>
+                <div className="rounded-2xl border border-slate-200 p-4">
+                  <div className="text-sm font-semibold text-brand-navy">Well expertise</div>
+                  <div className="text-sm text-slate-600 mt-1">Pressure, pumps, tanks.</div>
                 </div>
-
-                <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3">
-                  <div className="flex items-center gap-2 text-sm text-slate-700">
-                    <IconStar className="h-4 w-4 text-brand-navy" />
-                    <span className="font-semibold text-brand-navy">Local-first service</span>
-                    <span className="text-slate-600">Prospect, CT + nearby towns</span>
-                  </div>
-                  <Link href={PHONE_TEL} className="btn btn-secondary">
-                    Call {PHONE_TEXT}
-                  </Link>
+                <div className="rounded-2xl border border-slate-200 p-4">
+                  <div className="text-sm font-semibold text-brand-navy">Tidy finish</div>
+                  <div className="text-sm text-slate-600 mt-1">Respect your home.</div>
                 </div>
               </div>
             </div>
@@ -436,7 +318,7 @@ export default function HomePage() {
                     Call now
                   </Link>
                   <Link
-                    href={PRIMARY_CTA.href}
+                    href="/contact"
                     className="btn border border-white/25 text-white hover:bg-white/10"
                   >
                     Request service
@@ -455,7 +337,7 @@ export default function HomePage() {
             <SectionHeader
               eyebrow="Reviews"
               title="The kind of service people talk about"
-              subtitle="Add real Google review snippets here later—this layout is ready."
+              subtitle="Swap in real Google review snippets whenever you’re ready."
             />
             <Link href="/reviews" className="hidden md:inline-flex btn btn-secondary">
               View Reviews
@@ -518,7 +400,6 @@ export default function HomePage() {
         </Link>
       </div>
 
-      {/* spacing so sticky button doesn't cover content */}
       <div className="md:hidden h-20" />
     </>
   );
