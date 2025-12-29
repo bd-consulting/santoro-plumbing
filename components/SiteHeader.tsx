@@ -27,8 +27,9 @@ export function SiteHeader() {
         <Link href="/" className="flex items-center">
           {!logoFailed ? (
             <div className="relative h-10 w-[180px] sm:w-[200px] md:w-[220px]">
+              {/* NOTE: Path is case-sensitive on Vercel/Linux. File is /public/SPWS_LOGO.png */}
               <Image
-                src="/SPWS_LOGO.png"  {/* MATCHES EXACT FILENAME */}
+                src="/SPWS_LOGO.png"
                 alt="Santoro Plumbing & Well Services"
                 fill
                 priority
