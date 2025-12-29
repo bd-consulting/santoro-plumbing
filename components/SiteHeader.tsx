@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { IconPhone } from "./Icons";
 
@@ -21,19 +22,28 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b bg-white/85 backdrop-blur">
       <div className="container py-3 flex items-center justify-between">
+        {/* Logo */}
         <Link href="/" className="flex items-center gap-3">
-          <div className="h-10 w-10 rounded-2xl bg-brand-navy text-white grid place-items-center font-semibold shadow-soft">
-            S
-          </div>
-          <div className="leading-tight">
-            <div className="font-semibold tracking-tight">Santoro</div>
-            <div className="text-xs text-slate-600 -mt-0.5">Plumbing &amp; Well Services</div>
+          <div className="relative h-10 w-auto">
+            <Image
+              src="/spws_logo.png"
+              alt="Santoro Plumbing & Well Services logo"
+              height={40}
+              width={160}
+              priority
+              className="h-10 w-auto object-contain"
+            />
           </div>
         </Link>
 
+        {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-6 text-sm">
           {nav.map((n) => (
-            <Link key={n.href} href={n.href} className="text-slate-700 hover:text-brand-navy">
+            <Link
+              key={n.href}
+              href={n.href}
+              className="text-slate-700 hover:text-brand-navy"
+            >
               {n.label}
             </Link>
           ))}
@@ -43,6 +53,7 @@ export function SiteHeader() {
           </Link>
         </nav>
 
+        {/* Mobile Toggle */}
         <button
           className="md:hidden btn btn-secondary"
           onClick={() => setOpen((v) => !v)}
@@ -53,6 +64,7 @@ export function SiteHeader() {
         </button>
       </div>
 
+      {/* Mobile Menu */}
       {open && (
         <div className="md:hidden border-t bg-white">
           <div className="container py-3 flex flex-col gap-2">
