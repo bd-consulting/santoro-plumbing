@@ -3,44 +3,173 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: light;
+  /* Brand */
+  --brand-navy: #0b1f3b;
+  --brand-steel: #2a5b84;
+  --brand-mist: #eef3f8;
+
+  /* Accent (Crimson/Copper-inspired; used sparingly) */
+  --brand-copper: #b87333;
+  --brand-copper-dark: #8e5626;
+
+  /* Neutrals */
+  --ink: #0b1220;
+  --muted: #5b6676;
+
+  /* Radii / shadows */
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.5rem;
+
+  --shadow-soft: 0 10px 30px rgba(2, 8, 23, 0.08);
+  --shadow-card: 0 8px 18px rgba(2, 8, 23, 0.10);
+}
+
+html,
+body {
+  height: 100%;
 }
 
 body {
-  @apply bg-white text-slate-900 antialiased;
+  color: var(--ink);
+  background: #ffffff;
 }
+
+/* -----------------------------
+   Utilities / Design System
+------------------------------ */
 
 .container {
   @apply mx-auto max-w-6xl px-4;
 }
 
-@layer components {
-  .btn {
-    @apply inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold transition
-           focus:outline-none focus:ring-2 focus:ring-brand-steel/40 focus:ring-offset-2;
-  }
+.eyebrow {
+  @apply text-xs font-semibold uppercase tracking-wider;
+  color: color-mix(in srgb, var(--brand-steel), #000 10%);
+}
 
-  .btn-primary {
-    @apply bg-brand-navy text-white hover:brightness-110;
-  }
+.muted {
+  @apply text-sm md:text-base;
+  color: var(--muted);
+}
 
-  .btn-secondary {
-    @apply border border-slate-200 bg-white hover:bg-slate-50;
-  }
+.shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
 
-  .card {
-    @apply rounded-2xl border border-slate-200 bg-white shadow-soft;
-  }
+.shadow-card {
+  box-shadow: var(--shadow-card);
+}
 
-  .eyebrow {
-    @apply text-xs font-semibold uppercase tracking-wider text-slate-500;
-  }
+.card {
+  @apply rounded-3xl border border-slate-200 bg-white;
+  box-shadow: var(--shadow-card);
+}
 
-  .muted {
-    @apply text-slate-600;
-  }
+/* Badge pill */
+.badge {
+  @apply inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/85 px-3 py-1 text-xs font-semibold;
+  color: var(--brand-navy);
+  backdrop-filter: blur(10px);
+}
 
-  .badge {
-    @apply inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-700;
-  }
+/* -----------------------------
+   Buttons (more “trade” weight)
+------------------------------ */
+
+.btn {
+  @apply inline-flex items-center justify-center rounded-2xl px-4 py-2.5 text-sm font-semibold transition;
+}
+
+.btn-primary {
+  /* CHANGE: copper accent primary (Crimson-inspired), still “premium trade” */
+  background: linear-gradient(135deg, var(--brand-copper), var(--brand-copper-dark));
+  color: #fff;
+  box-shadow: 0 12px 24px rgba(184, 115, 51, 0.22);
+}
+.btn-primary:hover {
+  filter: brightness(1.03);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  @apply border border-slate-200 bg-white;
+  color: var(--brand-navy);
+}
+.btn-secondary:hover {
+  @apply bg-slate-50;
+  transform: translateY(-1px);
+}
+
+/* Inverted / ghost for dark backgrounds */
+.btn-ghost-light {
+  @apply border border-white/25 text-white;
+}
+.btn-ghost-light:hover {
+  @apply bg-white/10;
+}
+
+/* -----------------------------
+   Branded section backgrounds
+------------------------------ */
+
+/* Branded hero background with texture + gradients */
+.brand-hero {
+  position: relative;
+  background:
+    radial-gradient(1200px 500px at 15% 15%, rgba(42, 91, 132, 0.22), transparent 55%),
+    radial-gradient(900px 500px at 80% 35%, rgba(184, 115, 51, 0.22), transparent 55%),
+    linear-gradient(180deg, var(--brand-mist), #ffffff);
+}
+
+/* Subtle “industrial” grid texture */
+.brand-hero::before,
+.brand-slab::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image:
+    linear-gradient(to right, rgba(11, 31, 59, 0.10) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(11, 31, 59, 0.10) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(circle at 30% 30%, black, transparent 65%);
+}
+
+/* Dark slab section (Crimson-like “big” separators) */
+.brand-slab {
+  position: relative;
+  background:
+    radial-gradient(900px 500px at 20% 40%, rgba(184, 115, 51, 0.22), transparent 55%),
+    radial-gradient(900px 500px at 80% 60%, rgba(42, 91, 132, 0.22), transparent 60%),
+    linear-gradient(135deg, var(--brand-navy), #061427);
+  color: white;
+}
+
+/* Angled divider */
+.angle-divider {
+  clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+}
+
+/* Service tile hover that feels “premium trade” */
+.service-tile {
+  @apply rounded-3xl border border-slate-200 bg-white p-6 transition;
+  box-shadow: var(--shadow-card);
+}
+.service-tile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 34px rgba(2, 8, 23, 0.14);
+  border-color: color-mix(in srgb, var(--brand-copper), #fff 65%);
+}
+
+/* Strong heading style */
+.display {
+  @apply text-4xl md:text-5xl font-semibold tracking-tight;
+  color: var(--brand-navy);
+}
+
+/* Dark display for slab */
+.display-invert {
+  @apply text-3xl md:text-4xl font-semibold tracking-tight;
+  color: #ffffff;
 }
